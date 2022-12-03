@@ -4,6 +4,7 @@ import sys
 
 async def main():
   sum = 0
+  group = []
   async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
     tabulator = client.host().directory('.').file('tabulator.js')
     base = (
@@ -15,8 +16,11 @@ async def main():
     )
     with open('input.txt', 'r') as _file:
       for line in _file:
-        round = base.with_exec(['node', 'tabulator.js', line.rstrip()])
-        sum += int(await round.stdout())
+        group.append(line.rstrip())
+        if len(group) == 3:
+          round = base.with_exec(['node', 'tabulator.js', group[0], group[1], group[2]])
+          sum += int(await round.stdout())
+          group = []
   print('answer is', sum)
 
 if __name__ == "__main__":

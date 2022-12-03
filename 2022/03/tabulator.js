@@ -1,12 +1,12 @@
 scores = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' // plus 1
 
-input = process.argv[2]
-c1 = input.substring(0, input.length / 2)
-c2 = input.substring(input.length / 2, input.length)
+input = process.argv.slice(2)
 
-for (var i = 0; i < c1.length; i++) {
-  if (c2.indexOf(c1.charAt(i)) != -1) {
-    console.log(scores.indexOf(c1.charAt(i)) + 1)
-    break
+for (var i = 0; i < input[0].length; i++) {
+  if (input[1].indexOf(input[0].charAt(i)) != -1) {
+    if (input[2].indexOf(input[0].charAt(i)) != -1) {
+      console.log(scores.indexOf(input[0].charAt(i)) + 1)
+      break
+    }
   }
 }
