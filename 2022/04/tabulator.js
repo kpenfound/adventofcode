@@ -14,6 +14,10 @@ if (ls >= rs && le <= re) {
   overlap = 1
 } else if (rs >= ls && re <= le) {
   overlap = 1
+} else if (le >= rs && ls <= rs) {
+  overlap = 1
+} else if (re >= ls && rs <= ls) {
+  overlap = 1
 } else {
   overlap = 0
 }
