@@ -20,9 +20,12 @@ async def main():
           move = int(moves[1])
           move_from = int(moves[3])
           move_to = int(moves[5])
+          q = base.with_env_variable('NOCACHE', time.time_ns())
           for x in range(move):
-            q = base.with_env_variable('NOCACHE', time.time_ns()).with_exec(['redis-cli', '-h', host, 'LMOVE', stack(ts,move_from), stack(ts,move_to), 'RIGHT', 'RIGHT'])
-            await q.stdout()
+            q = q.with_exec(['redis-cli', '-h', host, 'LMOVE', stack(ts,move_from), stack(ts,'temp'), 'RIGHT', 'RIGHT'])
+          for x in range(move):
+            q = q.with_exec(['redis-cli', '-h', host, 'LMOVE', stack(ts,'temp'), stack(ts,move_to), 'RIGHT', 'RIGHT'])
+          await q.stdout()
         elif stacking: # stacking parsing
           for i, c in enumerate(line):
             if c.isalpha():
