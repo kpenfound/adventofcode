@@ -37,3 +37,7 @@ Bored with continually loading a nodejs script from python, I instead used redis
 [Problem](https://adventofcode.com/2022/day/6)
 
 Now that I'd used python as the entrypoint for 5 days in a row, I decided to mix it up. This time I'm using a bash script to execute GraphQL queries against the dagger engine using the dagger cli. The queries load and build a rust application which reads the input and outputs the solution.
+
+## End!
+
+I got really sick and fell too far behind :( But the first 6 days were fun!
